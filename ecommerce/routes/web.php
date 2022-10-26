@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminProductController;
 */
 
 Route::get('/',  [IndexController::class, 'index'])->name('home');
-Route::get('/product/{product}',  [ProductController::class, 'product'])->name('product');
+Route::get('/product/{product:slug}',  [ProductController::class, 'product'])->name('product');
 
 // admin Route
 Route::get('/admin/products', [AdminProductController::class, 'adminProduct'])->name('admin.products');
