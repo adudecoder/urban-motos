@@ -1,33 +1,38 @@
 @extends('layouts.default')
 
 @section('content')
+    {{-- {{ dd($products) }} --}}
     <section class="text-gray-600">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0170/4246/dynojet_power_commander_v_750x750.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Dynojet Power Commander V</h2>
-                        <span class="mny"><span class="mny__c">$</span>343<sup class="mny__s">.</sup><sup>99</sup><span class="mny__c"></span></span>
+                @foreach ($products as $product)
+                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                        <a class="block relative h-48 rounded overflow-hidden">
+                            {{-- <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                                src="https://www.revzilla.com/product_images/0170/4246/dynojet_power_commander_v_750x750.jpg"> --}}
+                            <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                                src="{{ $product->cover }}">
+                        </a>
+                        <div class="mt-4">
+                            <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
+                            <p class="mt-1">${{ $product->price }}</p>
+                        </div>
+                        <a href="{{ route('product', $product->id) }}" class="mt-3 text-indigo-500 inline-flex items-center">Read More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
                     </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                @endforeach
+                {{-- <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                     <a class="block relative h-48 rounded overflow-hidden">
                         <img alt="ecommerce" class="object-cover object-center w-full h-full block"
                             src="https://www.revzilla.com/product_images/0893/1126/akrapovic_slip_on_exhausts_300x300.jpg">
                     </a>
                     <div class="mt-4">
                         <h2 class="text-gray-900 title-font text-lg font-medium">Akrapovic Slip-On Exhausts</h2>
-                        {{-- <p class="mt-1">$493.16</p> --}}
+                        {{-- <p class="mt-1">$493.16</p>
                         <span class="mny"><span class="mny__c">$</span>493<sup class="mny__s">.</sup><sup>16</sup><span class="mny__c"></span></span>
                     </div>
                     <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
@@ -132,7 +137,7 @@
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
