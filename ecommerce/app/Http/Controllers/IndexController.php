@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::query();
+
+        $products->when($request->search, function($query, $value) {
+            $query->where('name', 'like', '%' . $value . '%');
+        });
+
+        $products = $products->get();
 
         return view('index', [
             'products' => $products

@@ -1,23 +1,38 @@
 @extends('layouts.default')
 
 @section('content')
-    {{-- {{ dd($products) }} --}}
+    <section>
+        <div class="container px-5 mx-auto">
+            <form method="GET" action="/" class="flex items-center space-x-5">
+                <div>
+                    <input value="{{ request()->search }}" type="text" id="search" name="search"
+                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button type="submit"
+                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Search</button>
+                    <a href="/" type="submit"
+                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear</a>
+                </div>
+            </form>
+        </div>
+    </section>
     <section class="text-gray-600">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
                 @foreach ($products as $product)
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                         <a class="block relative h-48 rounded overflow-hidden">
-                            {{-- <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                src="https://www.revzilla.com/product_images/0170/4246/dynojet_power_commander_v_750x750.jpg"> --}}
                             <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                src="{{ $product->cover }}">
+                                src="{{ \Illuminate\Support\Facades\Storage::url($product->cover) }}">
                         </a>
                         <div class="mt-4">
                             <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
                             <p class="mt-1">${{ $product->price }}</p>
                         </div>
-                        <a href="{{ route('product', $product->slug) }}" class="mt-3 text-indigo-500 inline-flex items-center">Read More
+                        <a href="{{ route('product', $product->slug) }}"
+                            class="mt-3 text-indigo-500 inline-flex items-center">Read More
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -25,119 +40,6 @@
                         </a>
                     </div>
                 @endforeach
-                {{-- <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0893/1126/akrapovic_slip_on_exhausts_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Akrapovic Slip-On Exhausts</h2>
-                        {{-- <p class="mt-1">$493.16</p>
-                        <span class="mny"><span class="mny__c">$</span>493<sup class="mny__s">.</sup><sup>16</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0080/0742/yuasa_agm_battery_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Yuasa AGM Battery</h2>
-                        <span class="mny"><span class="mny__c">$</span>53<sup class="mny__s">.</sup><sup>95</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0130/4326/yoshimura_r77_slip_on_exhaust_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Yoshimura R77 Slip-On Exhaust</h2>
-                        <span class="mny"><span class="mny__c">$</span>343<sup class="mny__s">.</sup><sup>96</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0292/1300/akrapovic_gp_slip_on_exhaust_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Akrapovic GP Slip-On Exhaust </h2>
-                        <span class="mny"><span class="mny__c">$</span>347<sup class="mny__s">.</sup><sup>88</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0086/1626/tech_spec_snake_skin_tank_pads_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">TechSpec Snake Skin Tank Pads</h2>
-                        <span class="mny"><span class="mny__c">$</span>21<sup class="mny__s">.</sup><sup>95</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0290/2517/vortex_v3_wss_chainand_sprocket_kit_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">Vortex V3 WSS Chain And Sprocket Kit</h2>
-                        <span class="mny"><span class="mny__c">$</span>167<sup class="mny__s">.</sup><sup>19</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                    <a class="block relative h-48 rounded overflow-hidden">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="https://www.revzilla.com/product_images/0285/8715/kn_oil_filters_300x300.jpg">
-                    </a>
-                    <div class="mt-4">
-                        <h2 class="text-gray-900 title-font text-lg font-medium">K&N Oil Filters</h2>
-                        <span class="mny"><span class="mny__c">$</span>10<sup class="mny__s">.</sup><sup>99</sup><span class="mny__c"></span></span>
-                    </div>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center">Read More
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div> --}}
             </div>
         </div>
     </section>
