@@ -11,9 +11,9 @@
 
                 <div class="flex items-center space-x-2">
                     <button type="submit"
-                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Search</button>
+                        class="flex ml-auto text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Search</button>
                     <a href="/" type="submit"
-                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear</a>
+                        class="flex ml-auto text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Clear</a>
                 </div>
             </form>
         </div>
@@ -32,7 +32,7 @@
                             <p class="mt-1">${{ $product->price }}</p>
                         </div>
                         <a href="{{ route('product', $product->slug) }}"
-                            class="mt-3 text-indigo-500 inline-flex items-center">Read More
+                            class="mt-3 text-red-600 inline-flex items-center">Read More
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>

@@ -12,14 +12,14 @@
                     @if ($product->stock)
                         <div class="my-3">
                             <span
-                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">In
+                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-600 text-white">In
                                 stock</span>
                         </div>
                     @endif
                     <div class="flex border-t-2 border-gray-100 mt-6 pt-6">
                         <span class="title-font font-medium text-2xl text-gray-900">${{ $product->price }}</span>
                         <a
-                            class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</a>
+                            class="flex ml-auto text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Buy</a>
                     </div>
                 </div>
             </div>
